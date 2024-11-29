@@ -53,7 +53,8 @@ public class Fuzzer {
                 int exit = process.waitFor();
                 String output = readStreamIntoString(process.getInputStream());
                 if (exit != 0) {
-                    System.out.printf("Input:\n%s\nOutput:\n%s\n", input, output);
+                    System.out.printf("Input:\n%s\nOutput:\n%s\n", input, output.replaceAll("warning: this program uses gets\\(\\), which is unsafe.", "")
+                            .trim());
                     System.out.printf("Exit code: %s\n", exit);
                     System.out.printf("\n ");
 
