@@ -21,12 +21,23 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    # Compile Fuzzer and HTML Parser
+    # List files to verify structure
+    - name: List Files
+      run: |
+        ls -l
+        ls -l html_parser_linux_x86_64
+
+    # Compile Java Files
     - name: Compile Java Files
       run: |
-        javac -d . Fuzzer.java "./html_parser_linux_x86_64"
+        javac -d . Fuzzer.java
+
+    # Grant execution permission to the Unix executable
+    - name: Make Executable
+      run: |
+        chmod +x html_parser_linux_x86_64
 
     # Run the Fuzzer
     - name: Run Fuzzer
-      run: java Fuzzer html_parser_linux_x86_64
-      continue-on-error: false
+      run: |
+        java Fuzzer html_parser_linux_x86_64
