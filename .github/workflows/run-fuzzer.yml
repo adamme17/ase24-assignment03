@@ -32,7 +32,7 @@ jobs:
 
     # Run the fuzzer
     - name: Run Fuzzer
-      run: java Fuzzer html_parser
+      run: java Fuzzer html_parser_linux_x86_64
       continue-on-error: false # Workflow will fail if Fuzzer exits with a non-zero code
 
     # Debugging: View logs if it fails
