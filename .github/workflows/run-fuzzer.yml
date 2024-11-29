@@ -24,7 +24,7 @@ jobs:
     # Compile Fuzzer and HTML Parser
     - name: Compile Java Files
       run: |
-        javac -d . src/Fuzzer.java src/html_parser_linux_x86_64/*.java
+        javac -d . Fuzzer.java src/html_parser_linux_x86_64/*.java
 
     # Run the Fuzzer
     - name: Run Fuzzer
