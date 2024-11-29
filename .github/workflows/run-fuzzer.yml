@@ -19,24 +19,14 @@ jobs:
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
-        java-version: '17' # Specify the Java version you want to use
+        java-version: '17'
 
-    # Build the project (if applicable)
-    - name: Build HTML Parser
+    # Compile Fuzzer and HTML Parser
+    - name: Compile Java Files
       run: |
-        ./gradlew build # Adjust to your build system (e.g., Maven or Gradle)
-      
-    # Compile the fuzzer
-    - name: Compile Fuzzer
-      run: javac -d . Fuzzer.java
+        javac -d . src/Fuzzer.java src/html_parser_linux_x86_64/*.java
 
-    # Run the fuzzer
+    # Run the Fuzzer
     - name: Run Fuzzer
       run: java Fuzzer html_parser_linux_x86_64
-      continue-on-error: false # Workflow will fail if Fuzzer exits with a non-zero code
-
-    # Debugging: View logs if it fails
-    - name: Debug Logs
-      if: failure()
-      run: cat logs/output.log # Replace with the location of any logs your fuzzer generates
-
+      continue-on-error: false
